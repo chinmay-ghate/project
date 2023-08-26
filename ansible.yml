@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+    - name: stop container
+      shell: docker container stop project                    #name of container
+    - name: remove container
+      shell: docker container rm project
+    - name: remove docker image
+      shell: docker image rm chinmayghate/httpd:latest        #name of images (docker images)
+    - name: create new container
+      shell: docker container run -itd --name rockstar-container -p 1111:80 chinmayghate/httpd:latest
+
+#- hosts: all
+#  tasks:
+#   - name: stop container
+#     shell: docker container stop mydockercontainer
+#   - name: remove container
+#     shell: docker container rm mydockercontainer
+#   - name: remove docker image
+#     shell: docker image rmi vikashashoke/docker_image
+#   - name: create new container
+#     shell: docker container run -itd --name mydockercontainer -p 9000:80 vikashashoke/docker_image
