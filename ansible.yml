@@ -9,7 +9,7 @@
     - name: create new container
       shell: docker container run -itd --name rockstar-container -p 1111:80 chinmayghate/httpd:latest
 
-#- hosts: all
+#- hosts: all .
 #  tasks:
 #   - name: stop container
 #     shell: docker container stop mydockercontainer
