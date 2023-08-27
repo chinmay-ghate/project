@@ -1,33 +1,12 @@
-- name: Stop and Remove Existing Docker Container
-  hosts: all
+- hosts: all
   tasks:
-    - name: Stop the existing container
-      become: yes
-      docker_container:
-        name: dockeransible
-        state: stopped
-      ignore_errors: yes
-
-    - name: Remove the existing container
-      become: yes
-      docker_container:
-        name: dockeransible
-        state: absent
-      ignore_errors: yes
-
-- name: Create New Docker Container
-  hosts: all
-  tasks:
-    - name: Pull the Docker image
-      become: yes
-      docker_image:
-        name: chinmayghate/httpd:latest
-
-    - name: Create the new container
-      become: yes
-      docker_container:
-        name: dockeransible
-        image: chinmayghate/httpd:latest
-        ports:
-          - "9000:80"
-        detach: yes
+    - name: stop container
+      shell: docker stop dockeransible
+    - name: remove container
+      shell: docker  rm dockeransible
+    - name: remove docker image
+      shell: docker image rmi -f chinmayghate/httpd:latest
+    - name: pull docker image
+      shell: docker pull chinmayghate/httpd:latest
+    - name: create new container
+      shell: docker run -itd --name dockeransible -p 9000:80 chinmayghate/httpd:latest
