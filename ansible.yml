@@ -1,25 +1,20 @@
-- name: Stop Docker Container
+- name: Stop and Remove Existing Docker Container
   hosts: all
   tasks:
-    - name: Stop the container
+    - name: Stop the existing container
       become: yes
       docker_container:
         name: dockeransible
         state: stopped
-- name: Remove Docker Container
-  hosts: all
-  tasks:
-    - name: Remove the container
+      ignore_errors: yes
+
+    - name: Remove the existing container
       become: yes
       docker_container:
         name: dockeransible
         state: absent
-- name: Remove Docker Image
-  hosts: all
-  tasks:
-    - name: Remove the Docker image
-      become: yes
-      command: docker rmi chinmayghate/httpd:latest
+      ignore_errors: yes
+
 - name: Create New Docker Container
   hosts: all
   tasks:
