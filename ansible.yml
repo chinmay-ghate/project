@@ -8,6 +8,6 @@
     - name: remove container
       shell: docker container rm dockeransible
     - name: remove docker image
-      shell: docker image rm -f chinmayghate/httpd:latest
+      shell: docker image rmi -f chinmayghate/httpd:latest
     - name: create new container 
       shell: docker run -itd --name dockeransible -p 9000:80 chinmayghate/httpd:latest
