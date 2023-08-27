@@ -1,8 +1,5 @@
 - hosts: all
   tasks:
-
-- hosts: all
-  tasks:
     - name: stop container
       shell: docker container stop dockeransible
     - name: remove container
